@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
@@ -15,7 +15,7 @@ export default function Reviews() {
 
   async function load() {
     const { data } = await db.from('reviews').select('id,name,rating,comment,created_at').order('created_at', { ascending: false }).limit(10);
-    setReviews((data as Review[]) || []);
+    setReviews((data as unknown as Review[]) || []);
   }
   useEffect(() => { load(); }, []);
 
@@ -38,9 +38,9 @@ export default function Reviews() {
         {reviews.length === 0 && <p>Belum ada ulasan.</p>}
         {reviews.map((r) => (
           <article key={r.id}>
-            <strong>{'★'.repeat(r.rating)}</strong>
+            <strong>{'?'.repeat(r.rating)}</strong>
             <p>{r.comment}</p>
-            <small>{r.name} · {new Date(r.created_at).toLocaleDateString('id-ID')}</small>
+            <small>{r.name} � {new Date(r.created_at).toLocaleDateString('id-ID')}</small>
           </article>
         ))}
       </div>
@@ -50,7 +50,7 @@ export default function Reviews() {
           {[5, 4, 3, 2, 1].map((n) => <option key={n} value={n}>{n} bintang</option>)}
         </select>
         <textarea placeholder="Komentar" value={comment} onChange={(e) => setComment(e.target.value)} required />
-        <button className="btn" disabled={busy}>{busy ? 'Mengirim…' : 'Kirim ulasan'}</button>
+        <button className="btn" disabled={busy}>{busy ? 'Mengirim�' : 'Kirim ulasan'}</button>
         {msg && <p>{msg}</p>}
       </form>
     </section>

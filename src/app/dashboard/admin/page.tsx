@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
@@ -84,7 +84,7 @@ export default function Admin() {
   return (
     <main className="dashboard">
       <header>
-        <a href="/">âŒ‚ Beresin Rumah</a>
+        <a href="/">¦ Beresin Rumah</a>
         <button onClick={logout}>Keluar</button>
       </header>
       <h1>Dashboard Admin</h1>
@@ -95,7 +95,7 @@ export default function Admin() {
         <article>Biaya langsung<b>Rp{stats.costs.toLocaleString('id-ID')}</b></article>
         <article>Margin kontribusi<b>Rp{stats.margin.toLocaleString('id-ID')}</b></article>
       </div>
-      <h2>Pesanan {loading && '(memuatâ€¦)'}</h2>
+      <h2>Pesanan {loading && '(memuat…)'}</h2>
       <div className="tablewrap">
         <table>
           <thead>
@@ -120,7 +120,7 @@ export default function Admin() {
                   <small>{o.address}</small>
                 </td>
                 <td>
-                  {o.package_name} Â· Rp{o.price.toLocaleString('id-ID')}
+                  {o.package_name} · Rp{o.price.toLocaleString('id-ID')}
                   <br />
                   {o.visit_date} {o.visit_time}
                 </td>
@@ -142,7 +142,7 @@ export default function Admin() {
                     }
                   />
                   <select defaultValue="" onChange={(e) => assign(o.id, e.target.value)}>
-                    <option value="">Tugaskanâ€¦</option>
+                    <option value="">Tugaskan…</option>
                     {workers.map((w) => (
                       <option key={w.user_id} value={w.user_id}>
                         {w.name}
