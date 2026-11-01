@@ -34,7 +34,11 @@ export default function Worker() {
         .select('id,wage,checklist_before,checklist_after,orders(package_name,code,visit_date,visit_time,address,notes)')
         .eq('worker_id', user.id);
       if (e) throw e;
-      setTasks((data as Assignment[]) || []);
+      const normalized = (data || []).map((row: any) => ({
+        ...row,
+        orders: Array.isArray(row.orders) ? (row.orders[0] ?? null) : row.orders,
+      }));
+      setTasks(normalized as unknown as Assignment[]);
     } catch (e: any) {
       setError(e?.message || 'Gagal memuat tugas.');
     } finally {
